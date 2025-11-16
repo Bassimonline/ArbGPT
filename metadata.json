@@ -1,0 +1,5 @@
+{
+  "name": "ArbGPT: AI Arbitrage Sniper",
+  "description": "A next-generation DeFi arbitrage platform powered by Gemini. It analyzes cross-exchange price discrepancies, calculates gas fees, and identifies sniping opportunities in real-time.",
+  "requestFramePermissions": []
+}
