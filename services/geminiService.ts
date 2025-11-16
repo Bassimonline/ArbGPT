@@ -1,9 +1,5 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
 import { RawMarketData, ArbitrageOpportunity, ArbitrageMode, CEX_EXCHANGES, DEX_EXCHANGES } from "../types";
-
-// Initialize Gemini Client
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const analyzeArbitrageOpportunities = async (marketData: RawMarketData[], mode: ArbitrageMode): Promise<ArbitrageOpportunity[]> => {
   
@@ -44,6 +40,10 @@ export const analyzeArbitrageOpportunities = async (marketData: RawMarketData[],
   `;
 
   try {
+    // Initialize Gemini Client inside the function to ensure safe execution in browser environments
+    // and to avoid crashing the app on load if the API Key is not yet available.
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
       contents: prompt,
